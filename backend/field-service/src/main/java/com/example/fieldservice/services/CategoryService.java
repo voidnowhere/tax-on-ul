@@ -21,8 +21,6 @@ public class CategoryService {
             return ResponseEntity.noContent().build();
         }
 
-        System.out.println(categories.size());
-
         return ResponseEntity.ok(categories);
     }
 
@@ -33,5 +31,10 @@ public class CategoryService {
 
         repository.save(category);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    public ResponseEntity<String> update(Category category) {
+        repository.save(category);
+        return ResponseEntity.ok().build();
     }
 }

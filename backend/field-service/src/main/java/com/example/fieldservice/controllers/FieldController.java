@@ -1,7 +1,7 @@
 package com.example.fieldservice.controllers;
 
-import com.example.fieldservice.dtos.FieldRequest;
-import com.example.fieldservice.dtos.FieldResponse;
+import com.example.fieldservice.dtos.field.FieldRequest;
+import com.example.fieldservice.dtos.field.FieldResponse;
 import com.example.fieldservice.entities.Category;
 import com.example.fieldservice.entities.Field;
 import com.example.fieldservice.services.FieldService;
