@@ -1,16 +1,16 @@
 package com.example.fieldservice.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,5 +22,10 @@ public class Category {
 
     public Category(Long id) {
         this.id = id;
+    }
+
+    public Category(String name, Float price) {
+        this.name = name;
+        this.price = price;
     }
 }

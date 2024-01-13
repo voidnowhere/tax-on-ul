@@ -1,6 +1,6 @@
 package com.example.fieldservice.services;
 
-import com.example.fieldservice.dtos.FieldResponse;
+import com.example.fieldservice.dtos.field.FieldResponse;
 import com.example.fieldservice.entities.Field;
 import com.example.fieldservice.repositories.FieldRepository;
 import lombok.RequiredArgsConstructor;

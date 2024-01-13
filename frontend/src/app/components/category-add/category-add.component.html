@@ -1,0 +1,36 @@
+<div class="p-5">
+  <div class="flex justify-between">
+    <h1 class="pt-2">Add category</h1>
+    <button mat-icon-button (click)="closeModal()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <form [formGroup]="form" (submit)="submit()" class="flex flex-col gap-2">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name">
+      @if (name.invalid) {
+        <mat-error *ngIf="name.hasError('required')">
+          Name is required.
+        </mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Price</mat-label>
+      <input matInput formControlName="price">
+      @if (price.invalid) {
+        <mat-error>
+          <ng-container *ngIf="price.hasError('required')">
+            Price is required.
+          </ng-container>
+          <ng-container *ngIf="price.hasError('min')">
+            Min value is 0.
+          </ng-container>
+        </mat-error>
+      }
+    </mat-form-field>
+    <button type="submit" [disabled]="!form.valid" mat-raised-button color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+  </form>
+</div>

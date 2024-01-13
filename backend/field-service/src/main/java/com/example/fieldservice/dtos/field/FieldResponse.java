@@ -1,4 +1,4 @@
-package com.example.fieldservice.dtos;
+package com.example.fieldservice.dtos.field;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

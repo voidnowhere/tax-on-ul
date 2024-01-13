@@ -1,5 +1,6 @@
 package com.example.fieldservice.controllers;
 
+import com.example.fieldservice.dtos.category.CategoryRequest;
 import com.example.fieldservice.entities.Category;
 import com.example.fieldservice.services.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,15 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<String> store(@RequestBody Category category) {
-        return service.store(category);
+    public ResponseEntity<String> store(@RequestBody CategoryRequest request) {
+        return service.store(new Category(request.name(), request.price()));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> update(
+            @PathVariable Long id,
+            @RequestBody CategoryRequest request
+    ) {
+        return service.update(new Category(id, request.name(), request.price()));
     }
 }
