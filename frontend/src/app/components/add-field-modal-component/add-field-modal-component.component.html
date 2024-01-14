@@ -1,0 +1,32 @@
+<!-- add-field-modal.component.html -->
+<h1 mat-dialog-title>{{ isUpdateMode ? 'Update Field' : 'Add Field' }}</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <label>Surface</label>
+    <input matInput placeholder="" [(ngModel)]="newField.surface" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>Category</label>
+    <mat-select [(ngModel)]="newField.categoryId" required>
+      <mat-option *ngFor="let category of categories" [value]="category.id">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>Owner</label>
+    <mat-select [(ngModel)]="newField.ownerId" required>
+      <mat-option *ngFor="let owner of owners" [value]="owner.id">
+        {{ owner.nic }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button color="primary" (click)="onAddField()">
+    {{ isUpdateMode ? 'Update Field' : 'Add Field' }}
+  </button>
+</div>

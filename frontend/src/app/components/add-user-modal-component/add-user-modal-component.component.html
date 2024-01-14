@@ -1,0 +1,13 @@
+<!-- add-user-modal.component.html -->
+<h1 mat-dialog-title>{{ isUpdateMode ? 'Update User' : 'Add User' }}</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="NIC" [(ngModel)]="newUser.nic" required>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button color="primary" (click)="onAddUser()">
+    {{ isUpdateMode ? 'Update User' : 'Add User' }}
+  </button>
+</div>
