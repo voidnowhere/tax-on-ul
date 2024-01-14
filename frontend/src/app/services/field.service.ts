@@ -1,15 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {User} from "../common/user";
 import {Field} from "../common/field";
 import {FieldRequest} from "../common/field-request";
+import {env} from "../env";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FieldService {
-  private apiUrl = 'http://localhost:8081/api/fields';
+  private apiUrl = `${env.baseUrl}/fields`;
 
   constructor(private http: HttpClient) {
   }
@@ -19,9 +19,8 @@ export class FieldService {
     return this.http.get<Field>(url);
   }
 
-  getAllFields(): Observable<Field[]> {
-    const url = `${this.apiUrl}`;  // Replace with your actual API endpoint
-    console.log(this.http.get<Field[]>(url))
+  getAllFields(ownerId: number): Observable<Field[]> {
+    const url = `${this.apiUrl}/by_owner/${ownerId}`;  // Replace with your actual API endpoint
     return this.http.get<Field[]>(url);
   }
 
@@ -32,7 +31,11 @@ export class FieldService {
 
   updateField(field: Field): Observable<Field> {
     const url = `${this.apiUrl}/${field.id}`;  // Replace with your actual API endpoint
-    return this.http.patch<Field>(url, field);
+    return this.http.patch<Field>(url, {
+      surface: field.surface,
+      categoryId: field.categoryId,
+      year: field.year,
+    });
   }
 
   createField(field: FieldRequest): Observable<FieldRequest> {

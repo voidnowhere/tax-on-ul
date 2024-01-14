@@ -10,7 +10,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/owners")
-@CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor
 public class OwnerController {
     private final OwnerService service;
@@ -39,5 +38,10 @@ public class OwnerController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
+    }
+
+    @GetMapping("/get_id/{nic}")
+    public ResponseEntity<Long> getOwnerId(@PathVariable String nic) {
+        return service.getOwnerId(nic);
     }
 }

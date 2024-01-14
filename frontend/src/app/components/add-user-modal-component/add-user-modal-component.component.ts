@@ -6,7 +6,7 @@ import {
   MatDialogRef,
   MatDialogTitle
 } from "@angular/material/dialog";
-import {User} from "../../common/user";
+import {Owner} from "../../common/owner";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
@@ -23,10 +23,9 @@ import {MatButtonModule} from "@angular/material/button";
     MatButtonModule
   ],
   templateUrl: './add-user-modal-component.component.html',
-  styleUrl: './add-user-modal-component.component.css'
 })
 export class AddUserModalComponent {
-  newUser: User = {
+  newUser: Owner = {
     nic: '',
   };
   isUpdateMode: boolean = false;

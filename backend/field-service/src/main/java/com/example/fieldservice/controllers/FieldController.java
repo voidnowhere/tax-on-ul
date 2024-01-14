@@ -3,6 +3,7 @@ package com.example.fieldservice.controllers;
 import com.example.fieldservice.dtos.FieldAdminResponse;
 import com.example.fieldservice.dtos.field.FieldRequest;
 import com.example.fieldservice.dtos.field.FieldResponse;
+import com.example.fieldservice.dtos.field.FieldUpdateRequest;
 import com.example.fieldservice.entities.Category;
 import com.example.fieldservice.entities.Field;
 import com.example.fieldservice.services.FieldService;
@@ -31,9 +32,10 @@ public class FieldController {
     @PostMapping
     public ResponseEntity<String> store(@RequestBody FieldRequest request) {
         return service.store(new Field(
-                request.getSurface(),
-                request.getOwnerId(),
-                new Category(request.getCategoryId())
+                request.surface(),
+                request.ownerId(),
+                request.year(),
+                new Category(request.categoryId())
         ));
     }
 
@@ -43,8 +45,7 @@ public class FieldController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Field> update(@PathVariable Long id, @RequestBody FieldRequest newField) {
-        Field updateField = service.update(id, newField);
-        return ResponseEntity.ok(updateField);
+    public void update(@PathVariable Long id, @RequestBody FieldUpdateRequest request) {
+        service.update(id, request);
     }
 }

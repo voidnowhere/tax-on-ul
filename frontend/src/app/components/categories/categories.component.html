@@ -1,7 +1,7 @@
-<div class="mt-5">
+<div class="mt-5 max-w-2xl mx-auto">
   <h1 class="text-center">Categories</h1>
   <div class="px-5">
-    <table mat-table [dataSource]="categories" class="mat-elevation-z8">
+    <table mat-table [dataSource]="categories">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
         <td mat-cell *matCellDef="let element"> {{ element.name }}</td>

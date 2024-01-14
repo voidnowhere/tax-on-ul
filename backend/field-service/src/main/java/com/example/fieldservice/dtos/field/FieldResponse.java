@@ -1,16 +1,10 @@
 package com.example.fieldservice.dtos.field;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class FieldResponse {
-    private Long id;
-    private Float surface;
-    private String category;
+public record FieldResponse(
+        Long id,
+        Float surface,
+        Long categoryId,
+        String categoryName,
+        int year
+) {
 }

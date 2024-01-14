@@ -49,7 +49,7 @@ export class CategoryEditComponent {
         'price': this.form.value.price,
       }).subscribe({
         next: value => {
-          this.snackBarService.show('Category edited successfully!');
+          this.snackBarService.open('Category edited successfully!');
           this.dialogRef.close(true);
         }
       })

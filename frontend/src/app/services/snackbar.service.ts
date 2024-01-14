@@ -8,8 +8,8 @@ export class SnackbarService {
   constructor(private snackBar: MatSnackBar) {
   }
 
-  show(message: string) {
-    this.snackBar.open('Category added successfully!', '', {
+  open(message: string) {
+    this.snackBar.open(message, 'Close', {
       duration: 3000,
     });
   }

@@ -6,7 +6,6 @@ import {NgIf} from "@angular/common";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {CategoryService} from "../../services/category.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import {SnackbarService} from "../../services/snackbar.service";
 
 @Component({
@@ -41,7 +40,7 @@ export class CategoryAddComponent {
         'price': this.form.value.price,
       }).subscribe({
         next: value => {
-          this.snackBarService.show('Category added successfully!');
+          this.snackBarService.open('Category added successfully!');
           this.dialogRef.close(true);
         }
       })
