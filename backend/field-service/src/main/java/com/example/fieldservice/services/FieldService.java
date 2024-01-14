@@ -1,9 +1,9 @@
 package com.example.fieldservice.services;
 
 import com.example.fieldservice.dtos.FieldAdminResponse;
-import com.example.fieldservice.entities.Category;
-import com.example.fieldservice.dtos.field.FieldRequest;
 import com.example.fieldservice.dtos.field.FieldResponse;
+import com.example.fieldservice.dtos.field.FieldUpdateRequest;
+import com.example.fieldservice.entities.Category;
 import com.example.fieldservice.entities.Field;
 import com.example.fieldservice.repositories.CategoryRepository;
 import com.example.fieldservice.repositories.FieldRepository;
@@ -30,8 +30,13 @@ public class FieldService {
         }
 
         return ResponseEntity.ok(fields.stream()
-                .map(f -> new FieldResponse(f.getId(), f.getSurface(), f.getCategory().getName()))
-                .toList()
+                .map(f -> new FieldResponse(
+                        f.getId(),
+                        f.getSurface(),
+                        f.getCategory().getId(),
+                        f.getCategory().getName(),
+                        f.getYear()
+                )).toList()
         );
     }
 
@@ -58,16 +63,17 @@ public class FieldService {
         return repository.findById(id);
     }
 
-    public Field update(Long id, FieldRequest newField) {
+    public void update(Long id, FieldUpdateRequest request) {
         Field field = repository.findById(id).orElseThrow();
-        if (newField.getSurface() != null) {
-            field.setSurface(newField.getSurface());
+        if (request.surface() != null) {
+            field.setSurface(request.surface());
         }
-        if (newField.getCategoryId() != null) {
-            Optional<Category> category = repositoryCategory.findById(newField.getCategoryId());
+        if (request.categoryId() != null) {
+            Optional<Category> category = repositoryCategory.findById(request.categoryId());
             field.setCategory(category.get());
         }
-        return repository.save(field);
+        field.setYear(request.year());
+        repository.save(field);
     }
 
     public void delete(Long id) {

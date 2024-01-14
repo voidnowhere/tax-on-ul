@@ -22,9 +22,10 @@ public class Field {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Category category;
 
-    public Field(Float surface, Long ownerId, Category category) {
+    public Field(Float surface, Long ownerId, int year, Category category) {
         this.surface = surface;
         this.ownerId = ownerId;
+        this.year = year;
         this.category = category;
     }
 }

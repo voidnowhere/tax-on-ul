@@ -1,9 +1,7 @@
-export class Field {
-  constructor(
-    public id?: number,
-    public surface?: Number,
-    public category?: string,
-    public ownerId?: Number,
-  ) {
-  }
+export interface Field {
+  id?: bigint,
+  surface: number,
+  categoryId: number,
+  categoryName: string,
+  year: number,
 }

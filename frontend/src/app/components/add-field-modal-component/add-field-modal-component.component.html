@@ -16,12 +16,8 @@
   </mat-form-field>
 
   <mat-form-field>
-    <label>Owner</label>
-    <mat-select [(ngModel)]="newField.ownerId" required>
-      <mat-option *ngFor="let owner of owners" [value]="owner.id">
-        {{ owner.nic }}
-      </mat-option>
-    </mat-select>
+    <label>Year</label>
+    <input matInput [(ngModel)]="newField.year" required>
   </mat-form-field>
 </div>
 <div mat-dialog-actions>

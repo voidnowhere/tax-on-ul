@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../../common/user";
-import {UserService} from "../../services/user.service";
+import {Owner} from "../../common/owner";
+import {OwnerService} from "../../services/owner.service";
 import {ActivatedRoute} from "@angular/router";
 import {MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -18,23 +18,21 @@ import {AddUserModalComponent} from "../add-user-modal-component/add-user-modal-
     MatIconModule,
     MatButtonModule
   ],
-  styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-
-  users: User[] = [];
-  newUser: User = {
+  users: Owner[] = [];
+  newUser: Owner = {
     nic: '',
   };
 
   displayedColumns: string[] = ['id', 'nic', 'actions']; // Add more columns if needed
-  dataSource: MatTableDataSource<User>;
+  dataSource: MatTableDataSource<Owner>;
 
-  constructor(private userService: UserService,
+  constructor(private userService: OwnerService,
               private route: ActivatedRoute,
               private snackBar: MatSnackBar,
               public dialog: MatDialog) {
-    this.dataSource = new MatTableDataSource<User>();
+    this.dataSource = new MatTableDataSource<Owner>();
   }
 
   ngOnInit() {
@@ -43,7 +41,7 @@ export class UserListComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService.getAllUsers().subscribe(
+    this.userService.getAllOwners().subscribe(
       data => {
         this.users = data;
         this.dataSource.data = this.users; // Set data for MatTableDataSource
@@ -52,7 +50,7 @@ export class UserListComponent implements OnInit {
   }
 
   createUser() {
-    this.userService.createUser(this.newUser).subscribe(
+    this.userService.createOwner(this.newUser).subscribe(
       () => {
         this.snackBar.open('User created successfully', 'Close', {
           duration: 3000,
@@ -87,7 +85,7 @@ export class UserListComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          this.userService.updateUser(result).subscribe(
+          this.userService.updateOwner(result).subscribe(
             updatedUser => {
               const index = this.users.findIndex(user => user.id === updatedUser.id);
               if (index !== -1) {
@@ -118,7 +116,7 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(userId: number): void {
-    this.userService.deleteUser(userId).subscribe(
+    this.userService.deleteOwner(userId).subscribe(
       () => {
         this.snackBar.open('User deleted successfully', 'Close', {
           duration: 3000,
@@ -154,7 +152,7 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  openUpdateUserModal(user: User): void {
+  openUpdateUserModal(user: Owner): void {
     const dialogRef = this.dialog.open(AddUserModalComponent, {
       width: '400px',
       data: {user: user} // Pass the user data for updating

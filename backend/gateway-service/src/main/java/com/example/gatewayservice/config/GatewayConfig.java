@@ -18,6 +18,9 @@ public class GatewayConfig {
                         .or()
                         .path("/api/fields/**")
                         .uri("lb://field-service")
+                ).route("payment-service", r -> r
+                        .path("/api/payments/**")
+                        .uri("lb://payment-service")
                 ).build();
     }
 }

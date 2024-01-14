@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -62,7 +63,13 @@ public class OwnerService {
         if (owner != null) {
             repository.delete(owner);
         }
+    }
 
+    public ResponseEntity<Long> getOwnerId(String nic) {
+        Optional<Owner> optionalOwner = repository.findByNic(nic);
 
+        return optionalOwner
+                .map(owner -> ResponseEntity.ok(owner.getId()))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

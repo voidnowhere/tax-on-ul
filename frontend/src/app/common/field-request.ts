@@ -4,6 +4,7 @@ export class FieldRequest {
     public surface?: Number,
     public categoryId?: Number,
     public ownerId?: Number,
+    public year?: Number,
   ) {
   }
 }
