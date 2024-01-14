@@ -16,6 +16,8 @@ public class Field {
     @Column(nullable = false)
     private Float surface;
     @Column(nullable = false)
+    private int year;
+    @Column(nullable = false)
     private Long ownerId;
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Category category;
