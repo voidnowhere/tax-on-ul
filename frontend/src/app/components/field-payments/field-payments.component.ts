@@ -51,7 +51,12 @@ export class FieldPaymentsComponent implements OnInit {
   setPaid(paymentId: bigint, event: MatSlideToggleChange) {
     this.service.setPaymentPaid(paymentId, event.checked).subscribe({
       next: value => {
-        this.fetchPayments();
+        this.payments.map(p => {
+          if (p.id === paymentId) {
+            p.dateTime = (event.checked) ? new Date() : undefined;
+          }
+          return p;
+        });
         this.snackBarService.open('Payment updated successfully');
       },
     });

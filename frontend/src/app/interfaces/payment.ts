@@ -3,5 +3,5 @@ export interface Payment {
   year: number,
   price: number,
   paid: boolean,
-  dateTime: Date,
+  dateTime?: Date,
 }
