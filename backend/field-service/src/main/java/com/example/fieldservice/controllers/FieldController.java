@@ -1,5 +1,6 @@
 package com.example.fieldservice.controllers;
 
+import com.example.fieldservice.dtos.FieldAdminResponse;
 import com.example.fieldservice.dtos.field.FieldRequest;
 import com.example.fieldservice.dtos.field.FieldResponse;
 import com.example.fieldservice.entities.Category;
@@ -17,9 +18,14 @@ import java.util.List;
 public class FieldController {
     private final FieldService service;
 
+    @GetMapping
+    public ResponseEntity<List<FieldAdminResponse>> getAll() {
+        return service.getAll();
+    }
+
     @GetMapping("/by_owner/{id}")
-    public ResponseEntity<List<FieldResponse>> getAll(@PathVariable Long id) {
-        return service.getAll(id);
+    public ResponseEntity<List<FieldResponse>> getAllByOwner(@PathVariable Long id) {
+        return service.getAllByOwnerId(id);
     }
 
     @PostMapping
@@ -29,5 +35,16 @@ public class FieldController {
                 request.getOwnerId(),
                 new Category(request.getCategoryId())
         ));
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Field> update(@PathVariable Long id, @RequestBody FieldRequest newField) {
+        Field updateField = service.update(id, newField);
+        return ResponseEntity.ok(updateField);
     }
 }
