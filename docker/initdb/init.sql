@@ -1,0 +1,4 @@
+CREATE DATABASE IF NOT EXISTS `auth-service`;
+CREATE DATABASE IF NOT EXISTS `field-service`;
+CREATE DATABASE IF NOT EXISTS `owner-service`;
+CREATE DATABASE IF NOT EXISTS `payment-service`;
