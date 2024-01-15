@@ -1,2 +1,4 @@
 *
+!initdb
+!initdb/*
 !.gitignore
