@@ -1,0 +1,14 @@
+FROM node:20.9
+
+ARG USER
+ARG UID
+
+RUN userdel -r node
+
+RUN useradd -mu $UID $USER
+
+RUN npm install -g @angular/cli
+
+USER $USER
+
+ENTRYPOINT [ "sh", "-c", "npm install && ng serve --host 0.0.0.0" ]
