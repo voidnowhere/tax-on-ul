@@ -130,7 +130,7 @@ services:
   frontend:
     container_name: frontend
     build:
-      context: ./frontend
+      context: ./frontend/docker
       dockerfile: Dockerfile
     ports:
       - 8000:80

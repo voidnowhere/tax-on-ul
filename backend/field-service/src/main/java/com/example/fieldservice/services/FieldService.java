@@ -42,7 +42,6 @@ public class FieldService {
 
     public ResponseEntity<List<FieldAdminResponse>> getAll() {
         List<Field> fields = repository.findAll();
-        System.out.println(fields);
 
         if (fields.isEmpty()) {
             return ResponseEntity.noContent().build();
